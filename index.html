@@ -1,5 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -19,3 +20,263 @@
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
+=======
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Explorer</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      background: #f5f7fa;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background: #0f766e;
+      color: white;
+      position: fixed;
+      padding: 30px 20px;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 40px;
+      font-size: 28px;
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: white;
+      padding: 14px 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #115e59;
+    }
+
+    /* MAIN CONTENT */
+    .main {
+      margin-left: 250px;
+      width: calc(100% - 250px);
+    }
+
+    /* HERO */
+    .hero {
+      height: 500px;
+      background:
+        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+        url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e")
+        center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 55px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
+
+    .hero button {
+      padding: 14px 30px;
+      border: none;
+      background: #14b8a6;
+      color: white;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 60px 40px;
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 35px;
+      margin-bottom: 40px;
+      color: #134e4a;
+    }
+
+    /* DESTINATION CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #0f766e;
+    }
+
+    .card p {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+      .sidebar {
+        width: 80px;
+        padding: 25px 10px;
+      }
+
+      .sidebar h2 {
+        font-size: 18px;
+      }
+
+      .sidebar a {
+        font-size: 12px;
+        padding: 10px;
+      }
+
+      .main {
+        margin-left: 80px;
+        width: calc(100% - 80px);
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <h2>🌍 TravelGo</h2>
+
+    <a href="#home">🏠 Home</a>
+    <a href="#destinations">📍 Destinations</a>
+    <a href="#tours">✈️ Tour Packages</a>
+    <a href="#hotels">🏨 Hotels</a>
+    <a href="#gallery">📷 Gallery</a>
+    <a href="#about">ℹ️ About Us</a>
+    <a href="#contact">📞 Contact</a>
+
+  </aside>
+
+
+  <!-- MAIN WEBSITE -->
+  <main class="main">
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+      <div>
+        <h1>Explore The World</h1>
+
+        <p>
+          Discover beautiful destinations and unforgettable experiences.
+        </p>
+
+        <button>Explore Now</button>
+      </div>
+
+    </section>
+
+
+    <!-- DESTINATIONS -->
+    <section class="section" id="destinations">
+
+      <h2>Popular Destinations</h2>
+
+      <div class="cards">
+
+        <div class="card">
+          <img
+            src="https://images.unsplash.com/photo-1537996194471-e657df975ab4"
+            alt="Bali">
+
+          <div class="card-content">
+            <h3>Bali</h3>
+            <p>
+              Explore tropical beaches, temples and beautiful landscapes.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="card">
+          <img
+            src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34"
+            alt="Paris">
+
+          <div class="card-content">
+            <h3>Paris</h3>
+            <p>
+              Experience amazing food, culture and iconic landmarks.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="card">
+          <img
+            src="https://images.unsplash.com/photo-1527668752968-14dc70a27c95"
+            alt="Switzerland">
+
+          <div class="card-content">
+            <h3>Switzerland</h3>
+            <p>
+              Discover beautiful mountains, lakes and scenic adventures.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
+>>>>>>> 10276ab (updated file)
