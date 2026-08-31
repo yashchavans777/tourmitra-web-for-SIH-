@@ -1,9 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/home/home'
+<<<<<<< HEAD
+import OfflineMap from './pages/OfflineMap/OfflineMap'
+=======
 import Guides from './pages/Guides/Guides'
 import OfflineGuide from './pages/offilineguide/offilineguide'
 import Safety from './pages/Safety/Safety'
+>>>>>>> c5e4864be87b8bdf57f714a8b422e50ac1783d52
 
 /**
  * Lightweight stand-in view for routes whose pages haven't been
@@ -35,8 +39,17 @@ function App() {
             <Route path="/routes" element={<PagePlaceholder title="Map & Routes" />} />
             <Route path="/guides" element={<Guides />} />
             <Route path="/budget" element={<PagePlaceholder title="Budget Analyzer" />} />
+<<<<<<< HEAD
             <Route path="/offline-guide" element={<OfflineGuide />} />
+=======
+            <Route path="/offline-guide" element={<PagePlaceholder title="Offline Guide" />} />
+<<<<<<< HEAD
+            <Route path="/offline-map" element={<OfflineMap />} />
+            <Route path="/safety" element={<PagePlaceholder title="Emergency / Safety Hub" />} />
+=======
+>>>>>>> 4f6e1b4592cf164edc630d852895598afbbd8132
             <Route path="/safety" element={<Safety />} />
+>>>>>>> c5e4864be87b8bdf57f714a8b422e50ac1783d52
             <Route path="*" element={<PagePlaceholder title="Page not found" />} />
           </Routes>
         </main>
