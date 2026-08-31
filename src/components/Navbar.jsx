@@ -15,6 +15,7 @@ import {
    Sidebar navigation items
 ──────────────────────────────────────────────────────── */
 const navItems = [
+  
   { to: '/',              label: 'Explore',         icon: Compass,    end: true },
   { to: '/routes',        label: 'Map & Routes',    icon: Map        },
   { to: '/guides',        label: 'Guide Directory', icon: Users      },
