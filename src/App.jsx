@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/home/home'
+import OfflineMap from './pages/OfflineMap/OfflineMap'
 
 /**
  * Lightweight stand-in view for routes whose pages haven't been
@@ -33,6 +34,7 @@ function App() {
             <Route path="/guides" element={<PagePlaceholder title="Guide Directory" />} />
             <Route path="/budget" element={<PagePlaceholder title="Budget Analyzer" />} />
             <Route path="/offline-guide" element={<PagePlaceholder title="Offline Guide" />} />
+            <Route path="/offline-map" element={<OfflineMap />} />
             <Route path="/safety" element={<PagePlaceholder title="Emergency / Safety Hub" />} />
             <Route path="*" element={<PagePlaceholder title="Page not found" />} />
           </Routes>
