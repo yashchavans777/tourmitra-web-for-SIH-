@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/home/home'
 import Guides from './pages/Guides/Guides'
+import OfflineGuide from './pages/offilineguide/offilineguide'
 import Safety from './pages/Safety/Safety'
 
 /**
@@ -34,7 +35,7 @@ function App() {
             <Route path="/routes" element={<PagePlaceholder title="Map & Routes" />} />
             <Route path="/guides" element={<Guides />} />
             <Route path="/budget" element={<PagePlaceholder title="Budget Analyzer" />} />
-            <Route path="/offline-guide" element={<PagePlaceholder title="Offline Guide" />} />
+            <Route path="/offline-guide" element={<OfflineGuide />} />
             <Route path="/safety" element={<Safety />} />
             <Route path="*" element={<PagePlaceholder title="Page not found" />} />
           </Routes>
