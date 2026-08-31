@@ -1,0 +1,338 @@
+/* ============================================================
+   Navbar.css - Sidebar + Top Header styles
+   TourMitra | SIH Tourism Web App
+============================================================ */
+
+/* ===== SIDEBAR ============================================================ */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: var(--sidebar-width);
+  background-color: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  z-index: 200;
+  overflow-y: auto;
+  transition: transform var(--transition);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+/* ── Brand ── */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 16px 16px;
+  flex-shrink: 0;
+}
+.brand-logo-wrap {
+  width: 42px;
+  height: 42px;
+  background: var(--color-primary);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(26, 107, 58, 0.3);
+}
+.brand-icon { color: #fff; }
+.brand-text { display: flex; flex-direction: column; min-width: 0; }
+.brand-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+.brand-tagline {
+  font-size: 0.67rem;
+  color: var(--color-text-muted);
+  margin-top: 1px;
+  white-space: nowrap;
+}
+
+/* ── Divider ── */
+.sidebar-divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 4px 16px;
+  flex-shrink: 0;
+}
+
+/* ── Navigation ── */
+.sidebar-nav {
+  flex: 1;
+  padding: 8px 0;
+  overflow: hidden;
+}
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 10px;
+}
+
+/* ── Nav item ── */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  position: relative;
+  transition: background var(--transition), color var(--transition);
+  text-align: left;
+  border: none;
+  cursor: pointer;
+}
+.nav-item:hover {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+.nav-item--active {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Left colored indicator bar (only visible when active) */
+.nav-indicator {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background-color: var(--color-primary);
+  border-radius: 0 2px 2px 0;
+  transition: height var(--transition);
+}
+.nav-item--active .nav-indicator {
+  height: 60%;
+}
+
+.nav-icon {
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition: opacity var(--transition);
+}
+.nav-item--active .nav-icon,
+.nav-item:hover .nav-icon {
+  opacity: 1;
+}
+.nav-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Muted bottom links ── */
+.nav-item--muted {
+  font-size: 0.825rem;
+  color: var(--color-text-muted);
+}
+.nav-item--muted:hover {
+  background-color: var(--color-surface-alt);
+  color: var(--color-text-secondary);
+}
+
+/* ── Emergency / Safety Hub button ── */
+.sidebar-emergency {
+  padding: 10px;
+  flex-shrink: 0;
+}
+.emergency-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 14px;
+  background-color: var(--color-emergency);
+  color: #fff;
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: background var(--transition), transform 0.1s;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(211, 47, 47, 0.3);
+}
+.emergency-btn:hover { background-color: #b71c1c; }
+.emergency-btn:active { transform: scale(0.97); }
+
+/* ── Bottom utility section ── */
+.sidebar-bottom {
+  padding: 8px 0 16px;
+  flex-shrink: 0;
+}
+
+/* ===== TOP HEADER ========================================================== */
+.top-header {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width);
+  right: 0;
+  height: var(--header-height);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 100;
+  transition: left var(--transition);
+}
+
+.top-header__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.top-header__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.top-header__right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── Header icon buttons ── */
+.header-icon-btn {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  color: var(--color-text-secondary);
+  transition: background var(--transition), color var(--transition);
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+.header-icon-btn:hover {
+  background-color: var(--color-surface-alt);
+  color: var(--color-primary);
+}
+
+/* Notification dot */
+.notif-dot {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 7px;
+  height: 7px;
+  background: var(--color-emergency);
+  border-radius: 50%;
+  border: 1.5px solid var(--color-surface);
+}
+
+/* ── Login button ── */
+.header-login-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  background-color: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background var(--transition);
+  border: none;
+  cursor: pointer;
+}
+.header-login-btn:hover { background-color: var(--color-primary-dark); }
+
+/* ── Profile avatar ── */
+.header-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-border);
+  transition: border-color var(--transition);
+  cursor: pointer;
+}
+.header-avatar:hover { border-color: var(--color-primary); }
+
+/* ===== HAMBURGER BUTTON (mobile only) ===================================== */
+.hamburger-btn {
+  display: none;
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 300;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+/* Semi-transparent backdrop */
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+  z-index: 150;
+}
+
+/* ===== RESPONSIVE ========================================================= */
+@media (max-width: 900px) {
+  /* Slide sidebar off screen by default on small viewports */
+  .sidebar {
+    transform: translateX(-100%);
+    box-shadow: var(--shadow-lg);
+  }
+  .sidebar--open {
+    transform: translateX(0);
+  }
+  .sidebar-backdrop {
+    display: block;
+  }
+  .hamburger-btn {
+    display: flex;
+  }
+  .top-header {
+    left: 0;
+    padding-left: 60px;
+  }
+}
+
+@media (max-width: 600px) {
+  .top-header {
+    padding-right: 12px;
+  }
+  .header-login-btn span {
+    display: none;
+  }
+  .top-header__title {
+    font-size: 0.9rem;
+  }
+}
