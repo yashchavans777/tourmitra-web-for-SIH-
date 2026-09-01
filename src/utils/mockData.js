@@ -25,24 +25,7 @@ export const mockGuides = [
     rating: 4.7,
     languages: ["Marathi", "Hindi"],
     kycVerified: true,
-  },{
-    id: 4,
-    name: "yogisha",
-    specialty: " informational guide ",
-    pricePerDay: "₹1200",
-    rating: 4.5,
-    languages: ["English", "Hindi"],
-    kycVerified: true,
-  },{
-     id: 5,
-    name: "abhijeet",
-    specialty: " asthetic guide ",
-    pricePerDay: "₹1200",
-    rating: 4.6,
-    languages: ["English", "Hindi","Tamil"],
-    kycVerified: true,
   }
-
 ];
 
 export const mockPlaces = [];
