@@ -1,13 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Home from './pages/home/home'
-import Guides from './pages/Guides/Guides'
-import Safety from './pages/Safety/Safety'
+import Home from './pages/home/home.jsx'
+import Guides from './pages/guides/guides.jsx'
+import Safety from './pages/safety/safety.jsx'
 
-/**
- * Lightweight stand-in view for routes whose pages haven't been
- * implemented yet (the files in src/pages/* are currently empty).
- */
+ 
 function PagePlaceholder({ title }) {
   return (
     <div className="flex min-h-[60vh] items-center justify-center p-8">
