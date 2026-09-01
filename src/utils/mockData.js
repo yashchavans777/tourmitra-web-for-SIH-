@@ -26,7 +26,8 @@ export const mockGuides = [
     languages: ["Marathi", "Hindi"],
     kycVerified: true,
   },
-  id:6,
+  {
+    id: 6,
     name: "ramanujan",
     specialty: "standup comedy",
     pricePerDay: "₹1,00",

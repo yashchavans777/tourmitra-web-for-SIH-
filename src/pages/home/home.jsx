@@ -1,397 +1,193 @@
-import { useState } from 'react';
-import {
-  Search,
-  MapPin,
-  Star,
-  Heart,
-  WifiOff,
-  Wifi,
-  Calendar,
-  Users,
-  IndianRupee,
-  UserCheck,
-  Languages,
-  UserCircle2,
-  Banknote,
-  Phone,
-  Siren,
-  Share2,
-  ShieldAlert,
-  Stethoscope,
-  ChevronRight,
-} from 'lucide-react';
-import './Home.css';
+import { useMemo, useState } from 'react';
+import { CloudSun, MapPin, Search, Star } from 'lucide-react';
+import { mockPlaces } from '../../utils/mockData';
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   DATA – Nearby destination cards
-   Replace image URLs with your own assets later. These use picsum.photos
-   as placeholder images themed around India's tourism.
-───────────────────────────────────────────────────────────────────────────── */
-// this data must be edit
-const nearbyPlaces = [
+const fallbackPlaces = [
   {
-    id: 1,
+    id: 'fallback-1',
     name: 'Sinhagad Fort',
     location: 'Pune, Maharashtra',
+    distance: '12 km away',
     rating: 4.8,
-    category: 'Heritage',
-    image: 'https://images.unsplash.com/photo-1532083765555-9afcadfe2d8b?w=400&q=80',
   },
   {
-    id: 2,
+    id: 'fallback-2',
     name: 'Lonavala',
     location: 'Maharashtra',
+    distance: '48 km away',
     rating: 4.7,
-    season: 'Monsoon',
-    category: 'Hill Station',
-    image: 'https://images.unsplash.com/photo-1591017403286-fd8493524e1e?w=400&q=80',
   },
   {
-    id: 3,
+    id: 'fallback-3',
     name: 'Mahabaleshwar',
-    location: 'Maharashtra',
+    location: 'Satara, Maharashtra',
+    distance: '97 km away',
     rating: 4.9,
-    category: 'Hill Station',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80',
   },
 ];
-// this data must be edit
-/* Safety quick actions */
-const safetyActions = [
-  { id: 'sos',      label: 'SOS',               icon: Siren,       emergency: true  },
-  { id: 'location', label: 'Share Location',     icon: Share2,      emergency: false },
-  { id: 'police',   label: 'Police',             icon: ShieldAlert, emergency: true  },
-  { id: 'medical',  label: 'Medical Help',       icon: Stethoscope, emergency: true  },
-];
 
-/**
- * Home page component
- * Renders: Hero → Nearby Cards → Quick Booking → Guide Access → Safety
- */
 export default function Home() {
-  // Offline mode toggle state (UI only)
   const [offlineMode, setOfflineMode] = useState(false);
-  // Favourites state per card id
-  
-  const [favourites, setFavourites] = useState({}); //review
-  // Search input state
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Toggle favourite for a place card
-  const toggleFavourite = (id) =>
-    setFavourites(prev => ({ ...prev, [id]: !prev[id] }));
+  const placesToRender = useMemo(() => {
+    const source = Array.isArray(mockPlaces) && mockPlaces.length > 0 ? mockPlaces : fallbackPlaces;
+
+    return source.map((place, index) => ({
+      id: place.id ?? `place-${index}`,
+      name: place.name ?? place.title ?? 'Untitled Destination',
+      location: place.location ?? place.city ?? 'Nearby destination',
+      distance: place.distance ?? `${(index + 1) * 5} km away`,
+      rating: place.rating ?? 4.5,
+      image: place.image ?? null,
+    }));
+  }, []);
 
   return (
-    <main className="home-page" aria-label="Home page">
-      {" "}
-      //check
-      {/* ════════════════════════════════════════════════════════════
-          HERO SECTION
-      ════════════════════════════════════════════════════════════ */}
-      <section className="hero-section" aria-label="Search destinations">
-        {/* Background overlay */}
-        <div className="hero-overlay" aria-hidden="true" />
+    <main className="min-h-screen bg-slate-100 px-4 py-8 text-slate-900 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col gap-8">
+        <section className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+          <div className="overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-700 via-emerald-600 to-teal-500 p-8 text-white shadow-xl sm:p-10">
+            <div className="max-w-2xl space-y-6">
+              <span className="inline-flex rounded-full bg-white/15 px-4 py-1 text-sm font-medium tracking-wide text-white/90 ring-1 ring-white/20">
+                Welcome back, explorer
+              </span>
 
-        <div className="hero-content">
-          <span className="hero-badge">🇮🇳 Discover Incredible India</span>{" "}
-          //change it
-          <h1 className="hero-heading">Where do you want to explore?</h1>
-          <p className="hero-subheading">
-            Plan smarter trips with verified guides, safe routes & budget tools
-          </p>
-          {/* Search bar */}
-          <form
-            className="hero-search"
-            role="search"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <div className="search-input-wrap">
-              <Search size={20} className="search-icon" aria-hidden="true" />
-              <input
-                type="search"
-                className="search-input"
-                placeholder="Search destinations, guides, hotels or routes..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                aria-label="Search destinations"
-              />
+              <div className="space-y-3">
+                <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                  Where to next?
+                </h1>
+                <p className="max-w-xl text-sm text-emerald-50 sm:text-base">
+                  Discover top-rated places around you, plan smarter journeys, and keep your essentials ready for every adventure.
+                </p>
+              </div>
+
+              <form
+                className="flex flex-col gap-4 rounded-2xl bg-white/95 p-4 shadow-lg backdrop-blur sm:flex-row sm:items-center"
+                onSubmit={(event) => event.preventDefault()}
+                role="search"
+              >
+                <label className="flex flex-1 items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-600 focus-within:border-emerald-500 focus-within:ring-2 focus-within:ring-emerald-200">
+                  <Search className="h-5 w-5" aria-hidden="true" />
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(event) => setSearchQuery(event.target.value)}
+                    placeholder="Search destinations, landmarks, or cities"
+                    className="w-full bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400"
+                    aria-label="Search destinations"
+                  />
+                </label>
+
+                <div className="flex items-center justify-between gap-3 rounded-xl bg-slate-900/5 px-4 py-3 sm:min-w-[200px]">
+                  <div>
+                    <p className="text-sm font-semibold text-slate-900">Offline Mode</p>
+                    <p className="text-xs text-slate-500">Save essentials for low-network travel</p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setOfflineMode((previous) => !previous)}
+                    className={`relative inline-flex h-7 w-14 items-center rounded-full transition ${
+                      offlineMode ? 'bg-emerald-500' : 'bg-slate-300'
+                    }`}
+                    aria-pressed={offlineMode}
+                    aria-label="Toggle Offline Mode"
+                  >
+                    <span
+                      className={`inline-block h-5 w-5 transform rounded-full bg-white shadow transition ${
+                        offlineMode ? 'translate-x-8' : 'translate-x-1'
+                      }`}
+                    />
+                  </button>
+                </div>
+              </form>
             </div>
-            <button type="submit" className="search-btn" aria-label="Search">
-              <Search size={16} aria-hidden="true" />
-              Explore
-            </button>
-          </form>
-          {/* Offline mode toggle */}
-          <div className="offline-toggle-row">
-            <div
-              className={[
-                "offline-toggle",
-                offlineMode ? "offline-toggle--active" : "",
-              ]
-                .filter(Boolean)
-                .join(" ")}
-              onClick={() => setOfflineMode((prev) => !prev)}
-              role="switch"
-              aria-checked={offlineMode}
-              tabIndex={0}
-              onKeyDown={(e) =>
-                e.key === " " && setOfflineMode((prev) => !prev)
-              }
-              aria-label="Toggle offline mode"
-            >
-              <span className="offline-toggle__knob" />
-            </div>
-            <span className="offline-label">
-              {offlineMode ? (
-                <WifiOff size={14} aria-hidden="true" />
-              ) : (
-                <Wifi size={14} aria-hidden="true" />
-              )}
-              {offlineMode ? "Offline Mode — ON" : "Offline Mode"}
-            </span>
-            {offlineMode && (
-              <span className="offline-badge">Maps & guides cached</span>
-            )}
           </div>
-        </div>
-      </section>
-      {/* ════════════════════════════════════════════════════════════
-          MAIN CONTENT GRID (cards + right panel)
-      ════════════════════════════════════════════════════════════ */}
-      <div className="content-grid">
-        {/* ── LEFT / CENTER COLUMN ── */}
-        <div className="content-main">
-          {/* ── Best-Rated Nearby ── */}
-          <section className="section" aria-labelledby="nearby-heading">
-            <div className="section-header">
-              <h2 className="section-title" id="nearby-heading">
-                Best-Rated Nearby
-              </h2>
-              <button className="view-all-btn" type="button">
-                View All
-                <ChevronRight size={15} aria-hidden="true" />
-              </button>
+
+          <aside className="flex h-full flex-col justify-between rounded-3xl bg-white p-6 shadow-lg ring-1 ring-slate-200">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-sm font-medium text-slate-500">Weather Widget</p>
+                <h2 className="mt-2 text-xl font-semibold text-slate-900">Current Conditions</h2>
+              </div>
+              <div className="rounded-2xl bg-amber-100 p-3 text-amber-500">
+                <CloudSun className="h-7 w-7" aria-hidden="true" />
+              </div>
             </div>
 
-            {/* Destination cards */}
-            <div className="cards-grid" role="list">
-              {nearbyPlaces.map((place) => (
-                <article
-                  key={place.id}
-                  className="place-card"
-                  role="listitem"
-                  aria-label={place.name}
-                >
-                  {/* Card image */}
-                  <div className="place-card__img-wrap">
+            <div className="mt-8 rounded-2xl bg-slate-50 p-5">
+              <p className="text-3xl font-bold text-slate-900">22°C</p>
+              <p className="mt-1 text-base font-medium text-slate-700">Sunny</p>
+              <p className="mt-3 text-sm text-slate-500">Perfect weather for a short walking tour or an evening viewpoint stop.</p>
+            </div>
+
+            <div className="mt-6 flex items-center justify-between rounded-2xl bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+              <span>Status</span>
+              <span className="font-semibold">{offlineMode ? 'Offline mode enabled' : 'Online sync active'}</span>
+            </div>
+          </aside>
+        </section>
+
+        <section className="rounded-3xl bg-white p-6 shadow-lg ring-1 ring-slate-200 sm:p-8">
+          <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-sm font-medium uppercase tracking-[0.2em] text-emerald-600">
+                Best-Rated Nearby
+              </p>
+              <h2 className="mt-2 text-2xl font-bold text-slate-900">
+                Places travellers love around you
+              </h2>
+            </div>
+            <p className="text-sm text-slate-500">
+              Browse curated spots with strong ratings and quick distance insights.
+            </p>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+            {placesToRender.map((place) => (
+              <article
+                key={place.id}
+                className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+              >
+                <div className="flex h-44 items-center justify-center bg-gradient-to-br from-slate-200 via-slate-100 to-slate-300 text-center text-sm font-medium text-slate-500">
+                  {place.image ? (
                     <img
                       src={place.image}
-                      alt={`View of ${place.name}`}
-                      className="place-card__img"
+                      alt={place.name}
+                      className="h-full w-full object-cover"
                       loading="lazy"
                     />
-                    {/* Category badge */}
-                    <span className="place-card__category">
-                      {place.category}
-                    </span>
-                    {/* Favourite button */}
-                    <button
-                      className={[
-                        "place-card__fav",
-                        favourites[place.id] ? "place-card__fav--active" : "",
-                      ]
-                        .filter(Boolean)
-                        .join(" ")}
-                      onClick={() => toggleFavourite(place.id)}
-                      aria-label={
-                        favourites[place.id]
-                          ? `Remove ${place.name} from favourites`
-                          : `Add ${place.name} to favourites`
-                      }
-                      aria-pressed={!!favourites[place.id]}
-                      type="button"
-                    >
-                      <Heart
-                        size={16}
-                        fill={favourites[place.id] ? "#d32f2f" : "none"}
-                        color={favourites[place.id] ? "#d32f2f" : "#fff"}
-                        aria-hidden="true"
-                      />
-                    </button>
-                  </div>
+                  ) : (
+                    <span>Image Placeholder</span>
+                  )}
+                </div>
 
-                  {/* Card body */}
-                  <div className="place-card__body">
-                    <h3 className="place-card__name">{place.name}</h3>
-                    <p className="place-card__location">
-                      <MapPin size={13} aria-hidden="true" />
-                      {place.location}
-                    </p>
-                    {/* Rating badge */}
-                    <div className="place-card__rating">
-                      <Star
-                        size={13}
-                        fill="#f57c00"
-                        color="#f57c00"
-                        aria-hidden="true"
-                      />
-                      <span>{place.rating}</span>
+                <div className="space-y-4 p-5">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <h3 className="text-lg font-semibold text-slate-900">{place.name}</h3>
+                      <p className="mt-1 flex items-center gap-2 text-sm text-slate-500">
+                        <MapPin className="h-4 w-4 text-emerald-600" aria-hidden="true" />
+                        {place.location}
+                      </p>
                     </div>
+
+                    <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-700">
+                      <Star className="h-4 w-4 fill-current" aria-hidden="true" />
+                      {place.rating}
+                    </span>
                   </div>
-                </article>
-              ))}
-            </div>
-          </section>
 
-          {/* ── Tourist Safety ── */}
-          <section
-            className="section safety-section"
-            aria-labelledby="safety-heading"
-          >
-            <div className="section-header">
-              <h2 className="section-title" id="safety-heading">
-                Tourist Safety
-              </h2>
-            </div>
-            <div className="safety-grid">
-              {safetyActions.map(({ id, label, icon: Icon, emergency }) => (
-                <button
-                  key={id}
-                  type="button"
-                  className={[
-                    "safety-btn",
-                    emergency
-                      ? "safety-btn--emergency"
-                      : "safety-btn--secondary",
-                  ].join(" ")}
-                  aria-label={label}
-                >
-                  <Icon size={22} aria-hidden="true" />
-                  <span>{label}</span>
-                </button>
-              ))}
-            </div>
-          </section>
-        </div>
-
-        {/* ── RIGHT PANEL ── */}
-        <aside
-          className="content-sidebar"
-          aria-label="Quick booking and guide access"
-        >
-          {/* Quick Booking Card */}
-          // check it
-          <section className="booking-card" aria-labelledby="booking-heading">
-            <h2 className="booking-card__heading" id="booking-heading">
-              Quick Booking
-            </h2>
-
-            {/* Hotels & Stays dark green card */}
-            <div className="hotel-card">
-              <div className="hotel-card__header">
-                <h3 className="hotel-card__title">Hotels &amp; Stays</h3>
-                <span className="hotel-card__icon" aria-hidden="true">
-                  🏨
-                </span>
-              </div>
-              <p className="hotel-card__desc">
-                Find verified hotels, PGs, homestays and affordable stays near
-                your destination.
-              </p>
-
-              {/* Booking form fields (UI only) */}
-              <div className="hotel-card__fields">
-                <div className="field-row">
-                  <Calendar size={15} aria-hidden="true" />
-                  <span>
-                    Check-in: <strong>Select Date</strong>
-                  </span>
+                  <div className="flex items-center justify-between text-sm text-slate-600">
+                    <span className="font-medium">Distance</span>
+                    <span>{place.distance}</span>
+                  </div>
                 </div>
-                <div className="field-row">
-                  <Users size={15} aria-hidden="true" />
-                  <span>
-                    Guests: <strong>2 Adults</strong>
-                  </span>
-                </div>
-                <div className="field-row">
-                  <IndianRupee size={15} aria-hidden="true" />
-                  <span>
-                    Budget: <strong>₹2,000 – ₹5,000</strong>
-                  </span>
-                </div>
-              </div>
-
-              <button className="hotel-card__btn" type="button">
-                Find Stay
-              </button>
-            </div>
-          </section>
-          {/* Guide Quick Access Card */}
-          <section className="guide-card" aria-labelledby="guide-heading">
-            <div className="guide-card__header">
-              <UserCheck
-                size={22}
-                className="guide-card__icon"
-                aria-hidden="true"
-              />
-              <h2 className="guide-card__title" id="guide-heading">
-                Find a Verified Guide
-              </h2>
-            </div>
-            <p className="guide-card__desc">
-              Connect with certified local guides — rated, verified &amp;
-              available in your language.
-            </p>
-
-            {/* Filter options (UI only) */}
-            <div className="guide-card__filters">
-              <div className="guide-filter-row">
-                <Languages size={14} aria-hidden="true" />
-                <span className="filter-label">Language:</span>
-                <select className="filter-select" aria-label="Select language">
-                  <option value="">Any Language</option>
-                  <option value="hindi">Hindi</option>
-                  <option value="english">English</option>
-                  <option value="marathi">Marathi</option>
-                </select>
-              </div>
-              <div className="guide-filter-row">
-                <UserCircle2 size={14} aria-hidden="true" />
-                <span className="filter-label">Gender:</span>
-                <select
-                  className="filter-select"
-                  aria-label="Select guide gender"
-                >
-                  <option value="">Any</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div className="guide-filter-row">
-                <Banknote size={14} aria-hidden="true" />
-                <span className="filter-label">Fee:</span>
-                <select className="filter-select" aria-label="Select fee range">
-                  <option value="">Any Range</option>
-                  <option value="low">Under ₹500/day</option>
-                  <option value="mid">₹500 – ₹1500/day</option>
-                  <option value="high">Above ₹1500/day</option>
-                </select>
-              </div>
-            </div>
-
-            <button className="guide-card__btn" type="button">
-              <Phone size={15} aria-hidden="true" />
-              Find Guide
-            </button>
-
-            {/* Verified badge */}
-            <div className="guide-verified-note">
-              <span className="verified-dot" aria-hidden="true" />
-              All guides are government-verified
-            </div>
-          </section>
-        </aside>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   );
