@@ -25,9 +25,30 @@ export const mockGuides = [
     rating: 4.7,
     languages: ["Marathi", "Hindi"],
     kycVerified: true,
+ 
+  },{
+    id: 4,
+    name: "yogisha",
+    specialty: " informational guide ",
+    pricePerDay: "₹1200",
+    rating: 4.5,
+    languages: ["English", "Hindi"],
+    kycVerified: true,
+  },{
+     id: 5,
+    name: "abhijeet",
+    specialty: " asthetic guide ",
+    pricePerDay: "₹1200",
+    rating: 4.6,
+    languages: ["English", "Hindi","Tamil"],
+ 
   },
   {
+<<<<<<< HEAD
     id: 6,
+=======
+  id:6,
+>>>>>>> de4390407c899b62b8c827439aaa5db3bf984d19
     name: "ramanujan",
     specialty: "standup comedy",
     pricePerDay: "₹1,00",
@@ -35,6 +56,7 @@ export const mockGuides = [
     languages: ["Marathi", "Hindi","English"],
     kycVerified: true,
   }
+
 ];
 
 export const mockPlaces = [];
