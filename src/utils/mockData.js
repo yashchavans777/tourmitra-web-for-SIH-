@@ -25,6 +25,14 @@ export const mockGuides = [
     rating: 4.7,
     languages: ["Marathi", "Hindi"],
     kycVerified: true,
+  },
+  id:6,
+    name: "ramanujan",
+    specialty: "standup comedy",
+    pricePerDay: "₹1,00",
+    rating: 5,
+    languages: ["Marathi", "Hindi","English"],
+    kycVerified: true,
   }
 ];
 
