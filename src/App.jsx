@@ -11,7 +11,8 @@ import Safety from './pages/safety/safety.jsx'
 import BudgetPlanner from './pages/budgetplanner/budgetplanner.jsx';
 import OfflineGuide from './pages/offlineguide/offlineguide.jsx';
 import RoutePlanner from './pages/routeplanner/routeplanner.jsx';
-import Login from './pages/login/login.jsx'; // <- IMPORTED HERE
+import Login from './pages/login/login.jsx';
+import Profile from './pages/profile/profile.jsx'; // <- IMPORTED HERE
 
 function PagePlaceholder({ title }) {
   return (
@@ -26,13 +27,12 @@ function PagePlaceholder({ title }) {
   )
 }
 
-// THIS IS NEW: A layout component that holds your Sidebar and Chatbot
+// Layout wrapper for pages that need the Sidebar and Chatbot
 const MainLayout = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       <main className="md:pl-64">
-        {/* <Outlet /> is where all your inner pages (Home, Guides, etc.) will load */}
         <Outlet /> 
         <AIChatbot />
       </main>
@@ -44,10 +44,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* FULL SCREEN ROUTE: Login is outside the MainLayout, so no Sidebar! */}
+        {/* Full-Screen Routes (No Sidebar) */}
         <Route path="/login" element={<Login />} />
 
-        {/* SIDEBAR ROUTES: Everything inside here gets the Navbar and Chatbot */}
+        {/* Dashboard Routes (With Sidebar & Chatbot) */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/routes" element={<RoutePlanner />} />
@@ -55,6 +55,7 @@ function App() {
           <Route path="/budget" element={<BudgetPlanner />} />
           <Route path="/offline-guide" element={<OfflineGuide />} />
           <Route path="/safety" element={<Safety />} />
+          <Route path="/profile" element={<Profile />} /> {/* <- ADDED HERE */}
           <Route path="*" element={<PagePlaceholder title="Page not found" />} />
         </Route>
       </Routes>
@@ -63,4 +64,3 @@ function App() {
 }
 
 export default App
-
