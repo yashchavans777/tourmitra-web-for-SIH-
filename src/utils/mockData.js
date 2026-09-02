@@ -1,78 +1,121 @@
 export const mockGuides = [
   {
     id: 1,
-    name: "yash",
-    specialty: "Historical Forts",
-    pricePerDay: "₹1,200",
+    name: 'yash',
+    specialty: 'Historical Forts',
+    pricePerDay: '₹1,200',
     rating: 4.9,
-    languages: ["Hindi", "English", "Marathi"],
+    languages: ['Hindi', 'English', 'Marathi'],
     kycVerified: true,
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80',
   },
   {
     id: 2,
-    name: "lalit",
-    specialty: "Culture & Food Trails",
-    pricePerDay: "₹1,500",
+    name: 'lalit',
+    specialty: 'Culture & Food Trails',
+    pricePerDay: '₹1,500',
     rating: 4.8,
-    languages: ["Hindi", "English"],
+    languages: ['Hindi', 'English'],
     kycVerified: true,
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80',
   },
   {
     id: 3,
-    name: "soham",
-    specialty: "Trekking & Nature",
-    pricePerDay: "₹1,000",
+    name: 'soham',
+    specialty: 'Trekking & Nature',
+    pricePerDay: '₹1,000',
     rating: 4.7,
-    languages: ["Marathi", "Hindi"],
+    languages: ['Marathi', 'Hindi'],
     kycVerified: true,
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> 3d526b2a9086f5ef473482d54300fdf876f64c52
-  },{
-    id: 4,
-    name: "yogisha",
-    specialty: " informational guide ",
-    pricePerDay: "₹1200",
-    rating: 4.5,
-    languages: ["English", "Hindi"],
-    kycVerified: true,
-  },{
-     id: 5,
-    name: "abhijeet",
-    specialty: " asthetic guide ",
-    pricePerDay: "₹1200",
-    rating: 4.6,
-    languages: ["English", "Hindi","Tamil"],
-<<<<<<< HEAD
-
-  },{
-=======
- 
+    image: 'https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=900&q=80',
   },
   {
-<<<<<<< HEAD
-    id: 6,
-=======
->>>>>>> 3d526b2a9086f5ef473482d54300fdf876f64c52
-  id:6,
->>>>>>> de4390407c899b62b8c827439aaa5db3bf984d19
-    name: "ramanujan",
-    specialty: "standup comedy",
-    pricePerDay: "₹1,00",
-    rating: 5,
-    languages: ["Marathi", "Hindi","English"],
-<<<<<<< HEAD
-
-    kycVerified: true
-=======
+    id: 4,
+    name: 'yogisha',
+    specialty: 'Informational Guide',
+    pricePerDay: '₹1,200',
+    rating: 4.5,
+    languages: ['English', 'Hindi'],
     kycVerified: true,
->>>>>>> 3d526b2a9086f5ef473482d54300fdf876f64c52
-  }
-
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    id: 5,
+    name: 'abhijeet',
+    specialty: 'Aesthetic Guide',
+    pricePerDay: '₹1,200',
+    rating: 4.6,
+    languages: ['English', 'Hindi', 'Tamil'],
+    kycVerified: true,
+    image: 'https://images.unsplash.com/photo-1504257432389-52343af06ae3?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    id: 6,
+    name: 'ramanujan',
+    specialty: 'Standup Comedy',
+    pricePerDay: '₹100',
+    rating: 5,
+    languages: ['Marathi', 'Hindi', 'English'],
+    kycVerified: true,
+    image: 'https://images.unsplash.com/photo-1507591064344-4c6ce005b128?auto=format&fit=crop&w=900&q=80',
+  },
 ];
 
-export const mockPlaces = [];
-export const mockStays = [];
+export const mockPlaces = [
+  {
+    id: 1,
+    name: 'Rajmachi Trek',
+    location: 'Lonavala, Maharashtra',
+    category: 'Hiking',
+    description: 'A scenic monsoon trek with lush valleys, forest trails, and fort views.',
+    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
+    id: 2,
+    name: 'Valley View Point',
+    location: 'Munnar, Kerala',
+    category: 'Nature',
+    description: 'Rolling tea gardens, misty hills, and peaceful viewpoints for nature lovers.',
+    image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
+    id: 3,
+    name: 'Pine Ridge Trail',
+    location: 'Manali, Himachal Pradesh',
+    category: 'Adventure',
+    description: 'A refreshing mountain trail through pine forests with panoramic alpine scenery.',
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
+  },
+];
+
+export const mockStays = [
+  {
+    id: 1,
+    name: 'Green Valley Homestay',
+    type: 'Homestay',
+    pricePerNight: '₹2,400',
+    verified: true,
+    amenities: ['Wi-Fi', 'Meals'],
+    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
+    id: 2,
+    name: 'Cedar Peak Retreat',
+    type: 'Mountain Lodge',
+    pricePerNight: '₹3,100',
+    verified: true,
+    amenities: ['Wi-Fi', 'Breakfast', 'Bonfire'],
+    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
+    id: 3,
+    name: 'Forest Nest Rooms',
+    type: 'Guest House',
+    pricePerNight: '₹1,850',
+    verified: true,
+    amenities: ['Wi-Fi', 'Meals', 'Hot Water'],
+    image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80',
+  },
+];
+
 export const mockEmergency = {};
