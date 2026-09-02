@@ -1,12 +1,17 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
+
+// Component Imports
 import Navbar from './components/Navbar'
+import AIChatbot from './components/AIChatbot';
+
+// Page Imports
 import Home from './pages/home/home.jsx'
 import Guides from './pages/guides/guides.jsx'
 import Safety from './pages/safety/safety.jsx'
-import AIChatbot from './components/AIChatbot';
 import BudgetPlanner from './pages/budgetplanner/budgetplanner.jsx';
 import OfflineGuide from './pages/offlineguide/offlineguide.jsx';
 import RoutePlanner from './pages/routeplanner/routeplanner.jsx';
+import Login from './pages/login/login.jsx'; // <- IMPORTED HERE
 
 function PagePlaceholder({ title }) {
   return (
@@ -21,27 +26,38 @@ function PagePlaceholder({ title }) {
   )
 }
 
+// THIS IS NEW: A layout component that holds your Sidebar and Chatbot
+const MainLayout = () => {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      <main className="md:pl-64">
+        {/* <Outlet /> is where all your inner pages (Home, Guides, etc.) will load */}
+        <Outlet /> 
+        <AIChatbot />
+      </main>
+    </div>
+  );
+};
+
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-gray-50">
-        <Navbar />
+      <Routes>
+        {/* FULL SCREEN ROUTE: Login is outside the MainLayout, so no Sidebar! */}
+        <Route path="/login" element={<Login />} />
 
-        {/* Content area — offset by the fixed sidebar width on ≥ md screens */}
-        <main className="md:pl-64">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            {/* THIS LINE CHANGED: Replaced the placeholder with your new RoutePlanner */}
-            <Route path="/routes" element={<RoutePlanner />} />
-            <Route path="/guides" element={<Guides />} />
-            <Route path="/budget" element={<BudgetPlanner />} />
-            <Route path="/offline-guide" element={<OfflineGuide />} />
-            <Route path="/safety" element={<Safety />} />
-            <Route path="*" element={<PagePlaceholder title="Page not found" />} />
-          </Routes>
-          <AIChatbot/>
-        </main>
-      </div>
+        {/* SIDEBAR ROUTES: Everything inside here gets the Navbar and Chatbot */}
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/routes" element={<RoutePlanner />} />
+          <Route path="/guides" element={<Guides />} />
+          <Route path="/budget" element={<BudgetPlanner />} />
+          <Route path="/offline-guide" element={<OfflineGuide />} />
+          <Route path="/safety" element={<Safety />} />
+          <Route path="*" element={<PagePlaceholder title="Page not found" />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   )
 }
