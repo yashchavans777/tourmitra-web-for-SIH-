@@ -25,7 +25,11 @@ export const mockGuides = [
     rating: 4.7,
     languages: ["Marathi", "Hindi"],
     kycVerified: true,
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 3d526b2a9086f5ef473482d54300fdf876f64c52
   },{
     id: 4,
     name: "yogisha",
@@ -41,16 +45,30 @@ export const mockGuides = [
     pricePerDay: "₹1200",
     rating: 4.6,
     languages: ["English", "Hindi","Tamil"],
+<<<<<<< HEAD
 
   },{
+=======
+ 
+  },
+  {
+<<<<<<< HEAD
+    id: 6,
+=======
+>>>>>>> 3d526b2a9086f5ef473482d54300fdf876f64c52
   id:6,
+>>>>>>> de4390407c899b62b8c827439aaa5db3bf984d19
     name: "ramanujan",
     specialty: "standup comedy",
     pricePerDay: "₹1,00",
     rating: 5,
     languages: ["Marathi", "Hindi","English"],
+<<<<<<< HEAD
 
     kycVerified: true
+=======
+    kycVerified: true,
+>>>>>>> 3d526b2a9086f5ef473482d54300fdf876f64c52
   }
 
 ];
