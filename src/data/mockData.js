@@ -176,3 +176,62 @@ export const places = [
     tags: ['Tea Gardens', 'Hill Station', 'Trekking', 'Birdwatching'],
   },
 ];
+
+
+export const mockStays = [
+  {
+    id: 's-01',
+    name: 'Mountain Retreat',
+    type: 'Homestay',
+    pricePerNight: 2500,
+    isVerified: true,
+    amenities: ['Wi-Fi', 'Breakfast', 'Parking'],
+    image: 'https://placehold.co/600x400/e7f4eb/14532d?text=Mountain+Retreat',
+  },
+  {
+    id: 's-02',
+    name: 'Riverside Camp',
+    type: 'Camping',
+    pricePerNight: 1800,
+    isVerified: true,
+    amenities: ['Meals', 'Bonfire', 'Tent'],
+    image: 'https://placehold.co/600x400/e7f4eb/14532d?text=Riverside+Camp',
+  },
+  {
+    id: 's-03',
+    name: 'Heritage Villa',
+    type: 'Villa',
+    pricePerNight: 5000,
+    isVerified: false,
+    amenities: ['Wi-Fi', 'Pool', 'AC'],
+    image: 'https://placehold.co/600x400/e7f4eb/14532d?text=Heritage+Villa',
+  },
+  {
+    id: 's-04',
+    name: 'Forest Lodge',
+    type: 'Lodge',
+    pricePerNight: 3200,
+    isVerified: true,
+    amenities: ['Breakfast', 'Trekking Guide', 'Wi-Fi'],
+    image: 'https://placehold.co/600x400/e7f4eb/14532d?text=Forest+Lodge',
+  },
+  {
+    id: 's-05',
+    name: 'City Boutique Hotel',
+    type: 'Hotel',
+    pricePerNight: 4000,
+    isVerified: true,
+    amenities: ['Gym', 'Wi-Fi', 'Room Service'],
+    image: 'https://placehold.co/600x400/e7f4eb/14532d?text=Boutique+Hotel',
+  },
+  {
+    id: 's-06',
+    name: 'Lakeview Cottage',
+    type: 'Cottage',
+    pricePerNight: 2800,
+    isVerified: false,
+    amenities: ['Lake Access', 'Meals'],
+    image: 'https://placehold.co/600x400/e7f4eb/14532d?text=Lakeview+Cottage',
+  },
+];
+

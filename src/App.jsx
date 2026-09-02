@@ -3,8 +3,11 @@ import Navbar from './components/Navbar'
 import Home from './pages/home/home.jsx'
 import Guides from './pages/guides/guides.jsx'
 import Safety from './pages/safety/safety.jsx'
+import AIChatbot from './components/AIChatbot';
+import BudgetPlanner from './pages/budgetplanner/budgetplanner.jsx';
+import OfflineGuide from './pages/offlineguide/offlineguide.jsx';
+import RoutePlanner from './pages/routeplanner/routeplanner.jsx';
 
- 
 function PagePlaceholder({ title }) {
   return (
     <div className="flex min-h-[60vh] items-center justify-center p-8">
@@ -28,13 +31,15 @@ function App() {
         <main className="md:pl-64">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/routes" element={<PagePlaceholder title="Map & Routes" />} />
+            {/* THIS LINE CHANGED: Replaced the placeholder with your new RoutePlanner */}
+            <Route path="/routes" element={<RoutePlanner />} />
             <Route path="/guides" element={<Guides />} />
-            <Route path="/budget" element={<PagePlaceholder title="Budget Analyzer" />} />
-            <Route path="/offline-guide" element={<PagePlaceholder title="Offline Guide" />} />
+            <Route path="/budget" element={<BudgetPlanner />} />
+            <Route path="/offline-guide" element={<OfflineGuide />} />
             <Route path="/safety" element={<Safety />} />
             <Route path="*" element={<PagePlaceholder title="Page not found" />} />
           </Routes>
+          <AIChatbot/>
         </main>
       </div>
     </BrowserRouter>
