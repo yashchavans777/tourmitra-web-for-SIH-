@@ -1,14 +1,32 @@
 import { useState } from 'react';
+import L from 'leaflet';
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import {
   Check,
   Clock,
   Download,
   Footprints,
-  Map,
   Mountain,
   Route,
   TrendingUp,
 } from 'lucide-react';
+import 'leaflet/dist/leaflet.css';
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+
+/* Leaflet's default marker icons resolve to broken URLs once bundled by
+   Vite — re-point L.Icon.Default at the imported image assets. */
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: markerIcon2x,
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+});
+
+/* Map viewport — Pune, Maharashtra */
+const PUNE_CENTER = [18.5204, 73.8567];
+const MAP_ZOOM = 13;
 
 /* Mock elevation samples (% of chart height) simulating an alpine height
    profile: steady climb, twin peaks near the middle, long final descent.
@@ -31,8 +49,9 @@ const ROUTE_STATS = [
  * Two-column layout:
  *   • Left  — Route Info: title, distance, estimated time, elevation stats
  *             and an "Available Offline" toggle switch
- *   • Right — Map Area: gray interactive-map placeholder and a mock
- *             elevation (height) profile graph built from plain HTML/CSS
+ *   • Right — Map Area: interactive Leaflet map (react-leaflet, centred on
+ *             Pune) and a mock elevation (height) profile graph built from
+ *             plain HTML/CSS
  */
 export default function OfflineMap() {
   const [availableOffline, setAvailableOffline] = useState(false);
@@ -132,50 +151,26 @@ export default function OfflineMap() {
 
       {/* ══ RIGHT COLUMN — Map Area ═════════════════════════════ */}
       <section className="flex min-w-0 flex-1 flex-col gap-5">
-        {/* Interactive map placeholder */}
-        <div className="relative flex h-[380px] min-h-[320px] items-center justify-center overflow-hidden rounded-2xl border border-gray-200 bg-gray-200 md:h-[440px]">
-          {/* Grid backdrop to suggest map tiles */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 opacity-60"
-            style={{
-              backgroundImage:
-                'linear-gradient(rgba(255, 255, 255, 0.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.55) 1px, transparent 1px)',
-              backgroundSize: '28px 28px',
-            }}
-          />
-
-          {/* Centered label */}
-          <div className="relative z-10 flex flex-col items-center gap-3 text-center">
-            <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/80 text-gray-500 shadow-sm">
-              <Map size={26} aria-hidden="true" />
-            </span>
-            <p className="text-sm font-semibold text-gray-600">
-              Interactive Map Rendered Here
-            </p>
-            <p className="text-xs text-gray-400">
-              Offline tile cache · zoom, pan & route overlay
-            </p>
-          </div>
-
-          {/* Mock zoom controls */}
-          <div className="absolute right-3 top-3 z-10 flex flex-col overflow-hidden rounded-lg border border-gray-300 bg-white shadow-sm">
-            <button
-              type="button"
-              aria-label="Zoom in"
-              className="px-2.5 py-1 text-base font-bold leading-none text-gray-600 hover:bg-gray-100"
-            >
-              +
-            </button>
-            <span aria-hidden="true" className="h-px bg-gray-200" />
-            <button
-              type="button"
-              aria-label="Zoom out"
-              className="px-2.5 py-1 text-base font-bold leading-none text-gray-600 hover:bg-gray-100"
-            >
-              -
-            </button>
-          </div>
+        {/* Interactive map — react-leaflet. The wrapper combines `isolate`
+            + `z-0` so Leaflet's high internal z-indexes (panes 400–700,
+            controls up to 1000) stay trapped in this stacking context and
+            never paint over the fixed sidebar (z-index 200) or header. */}
+        <div
+          role="region"
+          aria-label="Interactive route map centred on Pune"
+          className="relative z-0 isolate h-[400px] overflow-hidden rounded-2xl border border-gray-200 shadow-sm md:h-[440px]"
+        >
+          <MapContainer
+            center={PUNE_CENTER}
+            zoom={MAP_ZOOM}
+            className="h-full w-full"
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={PUNE_CENTER} />
+          </MapContainer>
         </div>
 
         {/* Mock elevation graph */}
