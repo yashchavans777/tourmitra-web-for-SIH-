@@ -9,13 +9,14 @@ import Home from './pages/home/home.jsx'
 import Guides from './pages/guides/guides.jsx'
 import Safety from './pages/safety/safety.jsx'
 import BudgetPlanner from './pages/budgetplanner/budgetplanner.jsx';
-import OfflineGuide from './pages/offlineguide/offlineguide.jsx';
+import OfflineGuide from './pages/offilineguide/offilineguide.jsx';
 import RoutePlanner from './pages/routeplanner/routeplanner.jsx';
 import Login from './pages/login/login.jsx';
 import Profile from './pages/profile/profile.jsx'; // <- IMPORTED HERE
 import TouristPlace from './pages/touristplace/touristplace.jsx';
 import Explore from './pages/explore/explore.jsx';
 import GuideProfile from './pages/guideprofile/guideprofile.jsx';
+import GuideBooking from './pages/guidebooking/guidebooking.jsx';
 
 function PagePlaceholder({ title }) {
   return (
@@ -63,6 +64,7 @@ function App() {
           <Route path="/place/:id" element={<TouristPlace />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/guide/:id" element={<GuideProfile />} />
+          <Route path="/guidebooking" element={<GuideBooking />} />
         </Route>
       </Routes>
     </BrowserRouter>

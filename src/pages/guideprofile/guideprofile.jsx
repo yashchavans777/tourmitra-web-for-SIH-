@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { 
   Star, MapPin, ShieldCheck, Languages, 
   CheckCircle, Clock, Calendar, MessageCircle, ChevronLeft
@@ -7,6 +7,15 @@ import { useNavigate } from 'react-router-dom';
 
 export default function GuideProfile() {
   const navigate = useNavigate();
+  // Booking selections carried over to the /guidebooking checkout page
+  const [bookingDate, setBookingDate] = useState('');
+  const [duration, setDuration] = useState('4');
+
+  const handleBookNow = () => {
+    navigate('/guidebooking', {
+      state: { date: bookingDate, hours: Number(duration) },
+    });
+  };
 
   return (
     <section className="min-h-screen bg-gray-50 pb-12">
@@ -140,23 +149,30 @@ export default function GuideProfile() {
                     <Calendar size={18} className="absolute left-3 top-3 text-gray-400" />
                     <input 
                       type="date" 
+                      value={bookingDate}
+                      min={new Date().toISOString().slice(0, 10)}
+                      onChange={(e) => setBookingDate(e.target.value)}
                       className="w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-600 outline-none text-sm text-gray-700 bg-gray-50"
                     />
                   </div>
                 </div>
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">Duration</label>
-                  <select className="w-full px-3 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-600 outline-none text-sm text-gray-700 bg-gray-50">
-                    <option>2 Hours (₹1000)</option>
-                    <option>4 Hours - Half Day (₹2000)</option>
-                    <option>8 Hours - Full Day (₹3500)</option>
+                  <select 
+                    value={duration}
+                    onChange={(e) => setDuration(e.target.value)}
+                    className="w-full px-3 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-600 outline-none text-sm text-gray-700 bg-gray-50"
+                  >
+                    <option value="2">2 Hours (₹1000)</option>
+                    <option value="4">4 Hours - Half Day (₹2000)</option>
+                    <option value="8">8 Hours - Full Day (₹3500)</option>
                   </select>
                 </div>
               </div>
 
-              {/* Note: This navigates to the final step (guidebooking) which we will build next */}
+              {/* Navigates to the final checkout step (guidebooking) with the selected date & duration */}
               <button 
-                onClick={() => navigate('/guidebooking')}
+                onClick={handleBookNow}
                 className="w-full flex items-center justify-center gap-2 bg-green-800 text-white font-bold py-3.5 rounded-xl hover:bg-green-700 transition-colors shadow-md"
               >
                 Book This Guide
