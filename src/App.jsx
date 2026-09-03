@@ -13,6 +13,7 @@ import OfflineGuide from './pages/offlineguide/offlineguide.jsx';
 import RoutePlanner from './pages/routeplanner/routeplanner.jsx';
 import Login from './pages/login/login.jsx';
 import Profile from './pages/profile/profile.jsx'; // <- IMPORTED HERE
+import TouristPlace from './pages/touristplace/touristplace.jsx';
 
 function PagePlaceholder({ title }) {
   return (
@@ -57,6 +58,7 @@ function App() {
           <Route path="/safety" element={<Safety />} />
           <Route path="/profile" element={<Profile />} /> {/* <- ADDED HERE */}
           <Route path="*" element={<PagePlaceholder title="Page not found" />} />
+          <Route path="/place/:id" element={<TouristPlace />} />
         </Route>
       </Routes>
     </BrowserRouter>
