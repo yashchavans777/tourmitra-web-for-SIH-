@@ -15,7 +15,7 @@ import 'leaflet/dist/leaflet.css';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
-
+//check
 /* Leaflet's default marker icons resolve to broken URLs once bundled by
    Vite — re-point L.Icon.Default at the imported image assets. */
 delete L.Icon.Default.prototype._getIconUrl;
