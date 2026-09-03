@@ -14,6 +14,8 @@ import RoutePlanner from './pages/routeplanner/routeplanner.jsx';
 import Login from './pages/login/login.jsx';
 import Profile from './pages/profile/profile.jsx'; // <- IMPORTED HERE
 import TouristPlace from './pages/touristplace/touristplace.jsx';
+import Explore from './pages/explore/explore.jsx';
+import GuideProfile from './pages/guideprofile/guideprofile.jsx';
 
 function PagePlaceholder({ title }) {
   return (
@@ -59,6 +61,8 @@ function App() {
           <Route path="/profile" element={<Profile />} /> {/* <- ADDED HERE */}
           <Route path="*" element={<PagePlaceholder title="Page not found" />} />
           <Route path="/place/:id" element={<TouristPlace />} />
+          <Route path="/explore" element={<Explore />} />
+          <Route path="/guide/:id" element={<GuideProfile />} />
         </Route>
       </Routes>
     </BrowserRouter>
