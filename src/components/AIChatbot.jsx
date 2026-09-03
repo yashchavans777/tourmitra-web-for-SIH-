@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { MessageCircle, X, Send } from 'lucide-react';
-
+   
 const AIChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      {!isOpen ? (
+      {!isOpen ?  (
         // Floating Action Button
         <button
           onClick={() => setIsOpen(true)}
