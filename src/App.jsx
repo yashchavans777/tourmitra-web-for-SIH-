@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import AIChatbot from './components/AIChatbot'
 import Navbar from './components/Navbar'
 import Home from './pages/home/home.jsx'
 import Guides from './pages/guides/guides.jsx'
@@ -36,6 +37,8 @@ function App() {
             <Route path="*" element={<PagePlaceholder title="Page not found" />} />
           </Routes>
         </main>
+
+        <AIChatbot />
       </div>
     </BrowserRouter>
   )
